@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Gallery.ViewModel"  
+             xmlns:model="clr-namespace:Gallery.Models"  
+             x:Class="Gallery.Views.Display">
+    <ContentPage.Content>
+        <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding imageList}"
+              CurrentItem="{Binding currentImage}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Grid RowDefinitions="Auto,*,Auto" >
+                        <Label FontSize="Caption" FontAttributes="Bold" Text="Double tap the image to favorite" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Image Source="{Binding fileName}" BackgroundColor="Purple" Grid.Row="1" Grid.Column="0" HorizontalOptions="Fill">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="2" 
+                                                          Command="{Binding  Source={RelativeSource AncestorType={x:Type local:DisplayViewModel}}, Path=ToggleFavoriteCommand}"
+                                                          CommandParameter="{Binding id}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <BoxView IsVisible="{Binding fave}" HeightRequest="60" WidthRequest="60" HorizontalOptions="Start"
+                                         VerticalOptions="Start" BackgroundColor="Green" Grid.Column="0" Grid.Row="1"
+                                         CornerRadius="15"/>
+                        <Button Text="Go Back" Grid.Row="2" Command="{Binding Source={RelativeSource AncestorType={x:Type local:DisplayViewModel}}, Path=NavigateBackCommand}"/>
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </ContentPage.Content>
+</ContentPage>

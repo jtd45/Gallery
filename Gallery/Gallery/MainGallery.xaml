@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Gallery.ViewModel"  
+             xmlns:model="clr-namespace:Gallery.Models"  
+             x:Class="Gallery.MainGallery"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <Grid>
+            <Grid Margin="5" x:Name="GalleryGrid" ColumnDefinitions="*,*,*" RowDefinitions="200">
+            </Grid>
+            <CollectionView ItemsSource="{Binding imageList}" ItemsLayout="VerticalGrid,3" x:Name="GalleryView" Margin="5">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="130"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding fileName}" Grid.Column="0" Grid.Row="0" BackgroundColor="Purple">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                          Command="{Binding  Source={RelativeSource AncestorType={x:Type local:GalleryViewModel}}, Path=NavigateCommand}"
+                                                          CommandParameter="{Binding id}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <BoxView IsVisible="{Binding fave}" HeightRequest="35" WidthRequest="35" HorizontalOptions="Start"
+                                     VerticalOptions="Start" BackgroundColor="Green" Grid.Column="0" Grid.Row="0" CornerRadius="10"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>
