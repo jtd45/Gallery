@@ -11794,10 +11794,19 @@ namespace Gallery.Droid
 			public const int tiny3 = 2131165329;
 			
 			// aapt resource value: 0x7F070092
-			public const int tooltip_frame_dark = 2131165330;
+			public const int tiny4 = 2131165330;
 			
 			// aapt resource value: 0x7F070093
-			public const int tooltip_frame_light = 2131165331;
+			public const int tiny5 = 2131165331;
+			
+			// aapt resource value: 0x7F070094
+			public const int tiny6 = 2131165332;
+			
+			// aapt resource value: 0x7F070095
+			public const int tooltip_frame_dark = 2131165333;
+			
+			// aapt resource value: 0x7F070096
+			public const int tooltip_frame_light = 2131165334;
 			
 			static Drawable()
 			{
