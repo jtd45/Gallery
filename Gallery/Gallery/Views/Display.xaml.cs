@@ -26,6 +26,7 @@ namespace Gallery.Views
 
         public void setImage(int index)
         {
+            ImageCarousel.Position = index;
             _viewModel.setImage(index);
         }
     }

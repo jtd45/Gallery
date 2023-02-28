@@ -31,10 +31,9 @@ namespace Gallery.ViewModel
             set { SetProperty(ref title, value); }
         }
 
-        public bool isBusy = true;
-
         public GalleryViewModel()
         {
+            this.Title = "GalleryApp";
             imageList = new ObservableCollection<GalleryImage>();
             this.imageList.CollectionChanged += (sender, e) => { Console.WriteLine($"{e.Action}" + "collection changed"); };
             var assembly = IntrospectionExtensions.GetTypeInfo(typeof(GalleryViewModel)).Assembly;
@@ -56,7 +55,6 @@ namespace Gallery.ViewModel
 
             string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "temp.txt");
 
-            isBusy = false;
             displayPage = new Display(imageList);
             NavigateCommand = new Command<object>(
             async (object id) =>

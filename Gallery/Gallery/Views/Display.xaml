@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Gallery.ViewModel"  
              xmlns:model="clr-namespace:Gallery.Models"  
-             x:Class="Gallery.Views.Display">
+             x:Class="Gallery.Views.Display"
+             Title="Display">
     <ContentPage.Content>
         <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding imageList}"
               CurrentItem="{Binding currentImage}">
