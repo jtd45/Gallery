@@ -20,7 +20,10 @@ namespace Gallery.ViewModel
     {
         public ObservableCollection<GalleryImage> imageList { get; set; }
         public GalleryImage currentImage { get; set; }
+
+        //command called when an image is favorited/un-favorited
         public ICommand ToggleFavoriteCommand { private set; get; }
+        //command called to navigate back to the gallery page
         public ICommand NavigateBackCommand { private set; get; }
 
         string title = string.Empty;
@@ -49,6 +52,11 @@ namespace Gallery.ViewModel
                 }
             );
         }
+
+        /// <summary>
+        ///     Set the display page's current image by image id
+        /// </summary>
+        /// <param name="index"></param>
         public void setImage(int index)
         {
             this.currentImage = imageList[index];
@@ -56,6 +64,7 @@ namespace Gallery.ViewModel
             OnPropertyChanged("currentImage");
         }
 
+        //Update page when a bound property changes
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {

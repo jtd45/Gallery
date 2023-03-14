@@ -25,10 +25,9 @@ namespace Gallery
         {
             _viewModel.OnAppearing();
         }
-
-        /*protected override void OnSleep()
+        public void OnSleep()
         {
-            _viewModel.OnSleep();
-        }*/
+            _viewModel.SaveImageList();
+        }
     }
 }

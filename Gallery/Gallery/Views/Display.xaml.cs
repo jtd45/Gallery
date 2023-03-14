@@ -17,13 +17,16 @@ namespace Gallery.Views
     {
         DisplayViewModel _viewModel;
 
-        
         public Display(ObservableCollection<GalleryImage> imageList)
         {
             InitializeComponent();
             BindingContext = _viewModel = new DisplayViewModel(imageList);
         }
 
+        /// <summary>
+        ///     set current image by id
+        /// </summary>
+        /// <param name="index"></param>
         public void setImage(int index)
         {
             ImageCarousel.Position = index;

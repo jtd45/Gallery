@@ -33,16 +33,27 @@ namespace Gallery.ViewModel
 
         public GalleryViewModel()
         {
+            //setup page title, image list and an event that updates the page when changes are made to the image list
             this.Title = "GalleryApp";
             imageList = new ObservableCollection<GalleryImage>();
             this.imageList.CollectionChanged += (sender, e) => { Console.WriteLine($"{e.Action}" + "collection changed"); };
-            var assembly = IntrospectionExtensions.GetTypeInfo(typeof(GalleryViewModel)).Assembly;
-            Stream stream = assembly.GetManifestResourceStream("Gallery.ImageListJson.txt");
+
+            //read from ImageListJson file if the properties dictionary is not setup yet, otherwise pull JSON string from the properties dict
             string text = "";
-            using (var reader = new StreamReader(stream))
+            if (!Application.Current.Properties.ContainsKey("JSONList"))
             {
-                text = reader.ReadToEnd();
+                var assembly = IntrospectionExtensions.GetTypeInfo(typeof(GalleryViewModel)).Assembly;
+                Stream stream = assembly.GetManifestResourceStream("Gallery.ImageListJson.txt");
+                using (var reader = new StreamReader(stream))
+                {
+                    text = reader.ReadToEnd();
+                }
             }
+            else
+            {
+                text = Application.Current.Properties["JSONList"].ToString();
+            }
+            //deserialize JSON text and add images to image list
             Console.WriteLine("test is here " + text);
             List<GalleryImage> fileImageList= JsonConvert.DeserializeObject<List<GalleryImage>>(text);
             int count = 0;
@@ -52,9 +63,8 @@ namespace Gallery.ViewModel
                 this.imageList.Add(fileImage);
                 count++;
             }
-
-            string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "temp.txt");
-
+            
+            //setup the display page and the navigate command that sets image displayed by the display page and navigates from Gallery to display
             displayPage = new Display(imageList);
             NavigateCommand = new Command<object>(
             async (object id) =>
@@ -71,11 +81,13 @@ namespace Gallery.ViewModel
             OnPropertyChanged("imageList");
         }
 
-        public void OnSleep()
+        ///<summary>save the image list as a JSON string</summary>
+        public void SaveImageList()
         {
-
+            Application.Current.Properties["JSONList"] = JsonConvert.SerializeObject(imageList);
         }
 
+        //update page if property of a given variable changes
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {

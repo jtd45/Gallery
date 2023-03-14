@@ -6,11 +6,13 @@ namespace Gallery
 {
     public partial class App : Application
     {
+        private MainGallery mainGallery;
         public App()
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainGallery());
+            mainGallery = new MainGallery();
+            MainPage = new NavigationPage(mainGallery);
         }
 
         protected override void OnStart()
@@ -19,6 +21,7 @@ namespace Gallery
 
         protected override void OnSleep()
         {
+            mainGallery.OnSleep();
         }
 
         protected override void OnResume()
