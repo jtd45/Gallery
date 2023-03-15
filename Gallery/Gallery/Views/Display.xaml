@@ -6,8 +6,8 @@
              x:Class="Gallery.Views.Display"
              Title="Display">
     <ContentPage.Content>
-        <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding imageList}"
-              CurrentItem="{Binding currentImage}">
+        <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding ImageList}"
+              CurrentItem="{Binding CurrentImage}">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
                     <Grid RowDefinitions="Auto,*,Auto" >
