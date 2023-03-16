@@ -17,10 +17,10 @@ namespace Gallery.Views
     {
         DisplayViewModel _viewModel;
 
-        public Display(ObservableCollection<GalleryImage> imageList)
+        public Display()
         {
             InitializeComponent();
-            BindingContext = _viewModel = new DisplayViewModel(imageList);
+            BindingContext = _viewModel = new DisplayViewModel();
         }
 
         /// <summary>

@@ -4,10 +4,10 @@
              xmlns:local="clr-namespace:Gallery.ViewModel"  
              xmlns:model="clr-namespace:Gallery.Models"  
              x:Class="Gallery.Views.Display"
-             Title="Display">
+             Title="{Binding Title}">
     <ContentPage.Content>
-        <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding imageList}"
-              CurrentItem="{Binding currentImage}">
+        <CarouselView x:Name="ImageCarousel" ItemsSource="{Binding ImageList}"
+              CurrentItem="{Binding CurrentImage}">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
                     <Grid RowDefinitions="Auto,*,Auto" >

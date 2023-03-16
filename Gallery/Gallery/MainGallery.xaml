@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Gallery.ViewModel"  
-             xmlns:model="clr-namespace:Gallery.Models"  
+             xmlns:model="clr-namespace:Gallery.Models" 
              x:Class="Gallery.MainGallery"
              Title="{Binding Title}">
 
@@ -10,7 +10,7 @@
         <Grid>
             <Grid Margin="5" x:Name="GalleryGrid" ColumnDefinitions="*,*,*" RowDefinitions="200">
             </Grid>
-            <CollectionView ItemsSource="{Binding imageList}" ItemsLayout="VerticalGrid,3" x:Name="GalleryView" Margin="5">
+            <CollectionView ItemsSource="{Binding ImageList}" ItemsLayout="VerticalGrid,3" x:Name="GalleryView" Margin="5">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="5">

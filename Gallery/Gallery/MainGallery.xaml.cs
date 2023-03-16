@@ -23,6 +23,7 @@ namespace Gallery
 
         protected override void OnAppearing()
         {
+            //base.OnAppearing();
             _viewModel.OnAppearing();
         }
         public void OnSleep()

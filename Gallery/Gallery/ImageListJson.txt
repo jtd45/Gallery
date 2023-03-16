@@ -2,4 +2,8 @@
 {"fileName":"tiny3.png","fave":false},{"fileName":"tiny3.png","fave":false},
 {"fileName":"tiny6.png","fave":true},{"fileName":"tiny4.png","fave":false},
 {"fileName":"tiny5.png","fave":false},{"fileName":"tiny2.png","fave":true},
-{"fileName":"tiny6.png","fave":true}]
+{"fileName":"tiny6.png","fave":true},{"fileName":"tiny.png","fave":false},
+{"fileName":"tiny2.png","fave":true},{"fileName":"tiny3.png","fave":false},
+{"fileName":"tiny3.png","fave":false},{"fileName":"tiny6.png","fave":true},
+{"fileName":"tiny4.png","fave":false},{"fileName":"tiny5.png","fave":false},
+{"fileName":"tiny2.png","fave":true},{"fileName":"tiny6.png","fave":true}]

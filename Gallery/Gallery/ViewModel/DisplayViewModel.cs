@@ -16,14 +16,19 @@ using System.Collections.Specialized;
 
 namespace Gallery.ViewModel
 {
-    class DisplayViewModel : INotifyPropertyChanged
+    class DisplayViewModel : SharredViewModel
     {
-        public ObservableCollection<GalleryImage> imageList { get; set; }
-        public GalleryImage currentImage { get; set; }
-
-        //command called when an image is favorited/un-favorited
+        /// <summary>
+        ///     image currently displayed on the display page
+        /// </summary>
+        public GalleryImage CurrentImage { get; set; }
+        /// <summary>
+        ///     command used to toggle favoriting an image
+        /// </summary>
         public ICommand ToggleFavoriteCommand { private set; get; }
-        //command called to navigate back to the gallery page
+        /// <summary>
+        ///     command called to navigate back to the gallery page
+        /// </summary>
         public ICommand NavigateBackCommand { private set; get; }
 
         string title = string.Empty;
@@ -33,15 +38,15 @@ namespace Gallery.ViewModel
             get { return title; }
             set { SetProperty(ref title, value); }
         }
-        public DisplayViewModel(ObservableCollection<GalleryImage> imageList)
+        public DisplayViewModel()
         {
-            this.imageList = imageList;
-            this.imageList.CollectionChanged += (sender, e) => { Console.WriteLine($"{e.Action}"+"collection changed"); };
+            Title = "Display";
             ToggleFavoriteCommand = new Command(
                 execute: (object id) =>
                     {
                         Console.WriteLine("toggle Favorite of Image " + id);
-                        imageList[(int)id].fave=!imageList[(int)id].fave;
+                        ToggleImageFave((int)id);
+                        ImageList.CollectionChanged += (sender, e) => { Console.WriteLine($"{e.Action}" + "collection changed"); };
                     }
             );
             NavigateBackCommand = new Command(
@@ -59,32 +64,10 @@ namespace Gallery.ViewModel
         /// <param name="index"></param>
         public void setImage(int index)
         {
-            this.currentImage = imageList[index];
-            Console.WriteLine("Current image is id " + this.currentImage.id);
-            OnPropertyChanged("currentImage");
-        }
-
-        //Update page when a bound property changes
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            var changed = PropertyChanged;
-            if (changed == null)
-                return;
-
-            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        protected bool SetProperty<T>(ref T backingStore, T value,
-            [CallerMemberName] string propertyName = "",
-            Action onChanged = null)
-        {
-            if (EqualityComparer<T>.Default.Equals(backingStore, value))
-                return false;
-
-            backingStore = value;
-            onChanged?.Invoke();
-            OnPropertyChanged(propertyName);
-            return true;
+            CurrentImage = ImageList[index];
+            Console.WriteLine("Current image is id " + this.CurrentImage.id);
+            Title = CurrentImage.fileName;
+            OnPropertyChanged("CurrentImage");
         }
     }
 }
