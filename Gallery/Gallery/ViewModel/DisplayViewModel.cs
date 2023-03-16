@@ -18,11 +18,17 @@ namespace Gallery.ViewModel
 {
     class DisplayViewModel : SharredViewModel
     {
+        /// <summary>
+        ///     image currently displayed on the display page
+        /// </summary>
         public GalleryImage CurrentImage { get; set; }
-
-        //command called when an image is favorited/un-favorited
+        /// <summary>
+        ///     command used to toggle favoriting an image
+        /// </summary>
         public ICommand ToggleFavoriteCommand { private set; get; }
-        //command called to navigate back to the gallery page
+        /// <summary>
+        ///     command called to navigate back to the gallery page
+        /// </summary>
         public ICommand NavigateBackCommand { private set; get; }
 
         string title = string.Empty;
@@ -34,7 +40,7 @@ namespace Gallery.ViewModel
         }
         public DisplayViewModel()
         {
-            ImageList.CollectionChanged += (sender, e) => { Console.WriteLine($"{e.Action}" + "collection changed"); };
+            Title = "Display";
             ToggleFavoriteCommand = new Command(
                 execute: (object id) =>
                     {
@@ -60,6 +66,7 @@ namespace Gallery.ViewModel
         {
             CurrentImage = ImageList[index];
             Console.WriteLine("Current image is id " + this.CurrentImage.id);
+            Title = CurrentImage.fileName;
             OnPropertyChanged("CurrentImage");
         }
     }

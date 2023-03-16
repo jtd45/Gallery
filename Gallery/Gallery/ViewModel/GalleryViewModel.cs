@@ -34,7 +34,6 @@ namespace Gallery.ViewModel
         {
             //setup page title, image list and an event that updates the page when changes are made to the image list
             Title = "GalleryApp";
-            ImageList.CollectionChanged += (sender, e) => { Console.WriteLine($"{e.Action}" + "collection changed"); };
 
             //setup the display page and the navigate command that sets image displayed by the display page and navigates from Gallery to display
             displayPage = new Display();
