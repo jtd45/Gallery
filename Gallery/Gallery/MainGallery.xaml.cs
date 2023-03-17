@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Gallery.ViewModel;
-using Gallery.Views;
-using Gallery.Models;
-using System.Reflection;
 
 namespace Gallery
 {
