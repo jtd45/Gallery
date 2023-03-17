@@ -1,18 +1,7 @@
-﻿using Android.Content.Res;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Gallery.Views;
-using Gallery.ViewModel;
 using Gallery.Models;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace Gallery.ViewModel
 {
